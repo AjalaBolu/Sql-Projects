@@ -1,0 +1,51 @@
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : "customer_id"
+    EMPLOYEES ||--o{ ORDERS : "employee_id"
+    ORDERS ||--o{ ORDER_DETAILS : "order_id"
+    PRODUCTS ||--o{ ORDER_DETAILS : "product_id"
+    CATEGORIES ||--o{ PRODUCTS : "category_id"
+
+    CUSTOMERS {
+        varchar customer_id PK
+        varchar company_name
+        varchar contact_name
+        varchar country
+        varchar city
+    }
+
+    EMPLOYEES {
+        int employee_id PK
+        varchar first_name
+        varchar last_name
+        varchar title
+    }
+
+    ORDERS {
+        int order_id PK
+        varchar customer_id FK
+        int employee_id FK
+        date order_date
+        date shipped_date
+        varchar ship_country
+    }
+
+    ORDER_DETAILS {
+        int order_id FK
+        int product_id FK
+        numeric unit_price
+        int quantity
+        numeric discount
+    }
+
+    PRODUCTS {
+        int product_id PK
+        varchar product_name
+        int category_id FK
+        numeric unit_price
+        int units_in_stock
+    }
+
+    CATEGORIES {
+        int category_id PK
+        varchar category_name
+    }
